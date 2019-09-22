@@ -27,25 +27,31 @@ export default {
 
     this.markdownUrl = `${config.serverUrl}blog/article/${tag}/${name}`
     console.log(this.markdownUrl)
-    
-    // this.markdownPromise = fetch(`${config.serverUrl}blog/article/${tag}/${name}`)
-    //   .then(r=>r.json())
 
   },
   mounted: function() {
-    // console.log(config.serverUrl)
-    // this.markdownPromise
-    //   .then(res=>{
-    //     this.htmlArticle = marked(res['content'])
-    //   })
-
     fetch(this.markdownUrl)
       .then(r=>r.json())
-       .then(res=>{
+      .then(res=>{
         this.htmlArticle = marked(res['content'])
-        })
+      })
+      .then(()=>{
+        this.hookLink()
 
-  }
+      })
+
+  },
+  methods: {
+    hookLink: function() {
+      let linkReg = new RegExp("href=['\"]@([^'\"]+).md['\"]", "g");
+      let imgReg = new RegExp("src=['\"]@([^'\"]+)['\"]", "g");
+      let hooked = this.htmlArticle.replace(linkReg, "href=\"$1\"")
+      // hooked = hooked.replace(imgReg, "href=\"$1\"")
+      hooked = hooked.replace(imgReg, "src=\"https://m.baidu.com/static/index/plus/plus_logo_web.png\"")
+      // 
+      this.htmlArticle = hooked;
+    }
+  },
 }
 </script>
 

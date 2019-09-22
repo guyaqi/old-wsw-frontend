@@ -1,14 +1,12 @@
 <template>
   <div class="wsw">
-    <div class="sidebar"></div>
-    <div class="main">
-      <Main />
-    </div>
+    <div class="sidebar" />
+    <Main class="main" />
   </div>
 </template>
 
 <script>
-import Main from "@/components/main"
+import Main from "@/components/Main"
 export default {
   name: 'Wsw',
   components: {
@@ -28,7 +26,6 @@ export default {
   width: 200px;
   height: 100vh;
   background-color: rgb(36, 41, 46);
-
   flex-grow: 0;
   flex-shrink: 0;
 }

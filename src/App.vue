@@ -6,7 +6,7 @@
 
 <script>
 import "@/assets/css/normalize.css"
-import Wsw from "@/views/wsw.vue"
+import Wsw from "@/views/Wsw.vue"
 export default {
   components: {
     Wsw
